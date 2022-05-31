@@ -1,32 +1,27 @@
 package business;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import java.util.*;
 
 public class Licitacao {
 
-    private User comprador;
-
-    private Leilao leilao;
+    private int IDcomprador;
 
     private float montante;
     
     private LocalDate data;
 
-    public Licitacao(User comprador, Leilao leilao, float montante, LocalDate data) {
-        this.comprador=comprador;
-        this.leilao=leilao;
+    public Licitacao(int IDcomprador, float montante) {
+        this.IDcomprador= IDcomprador;
         this.montante=montante;
         this.data=data;
     }
 
-    public User getComprador() {
-        return this.comprador;
-    }
-
-    public Leilao getLeilao() {
-        return this.leilao;
+    public int getComprador() {
+        return this.IDcomprador;
     }
 
     public float getMontante() {
@@ -34,6 +29,11 @@ public class Licitacao {
     }
     
     public LocalDate getData() {
+    	
+    	LocalDate date = LocalDate.now();
+    			
+    	this.data = date;
+    	
         return this.data;
     }
     

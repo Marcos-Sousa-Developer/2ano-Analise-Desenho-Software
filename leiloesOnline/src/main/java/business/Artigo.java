@@ -8,14 +8,13 @@ public class Artigo {
 
     private String condicao;
 
-    private List<String> detalhes;
+    private HashMap<String,String> detalhes = new HashMap<String,String>();
     
     private String descricao;
     
-    public Artigo(String categoria, String condicao, List<String> detalhes, String descricao) {
+    public Artigo(String categoria, String condicao, String descricao) {
         this.categoria=categoria;
         this.condicao=condicao;
-        this.detalhes=detalhes;
         this.descricao=descricao;
     }
 
@@ -27,8 +26,13 @@ public class Artigo {
         return this.condicao;
     }
 
-    public List<String> getDetalhes() {
-        return this.detalhes;
+    public void addDetalhes(String nome, String valor) {
+    	detalhes.put(nome, valor);
+    }
+    
+    public HashMap<String,String> getDetalhes() {
+    	
+    	return detalhes;
     }
     
     public String getDescricao() {
