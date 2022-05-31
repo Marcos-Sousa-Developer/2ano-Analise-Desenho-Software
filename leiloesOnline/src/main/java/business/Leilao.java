@@ -20,12 +20,15 @@ public class Leilao {
     
     private Artigo artigo;
     
+    private ArrayList<Licitacao> listaLicitacoes;
+    
     public Leilao(User vendedor, String titulo, Artigo artigo) {
         this.vendedor=vendedor;
         this.titulo=titulo;
         this.licitacaoAtual=null;
         this.estado="criado";
         this.artigo=artigo;
+        this.listaLicitacoes=new ArrayList<Licitacao>();
     }
 
     public User getVendedor() {
@@ -65,14 +68,22 @@ public class Leilao {
     	this.estado=estado;
     }
     
-    public void terminaLeilao() { 
-    	if (this.meusLeiloes.contains(L)) {
-        	L.alteraEstado("encerrado");
-    	}
-    	else {
-    		System.out.println("Não é possível encerrar este leilão");
+    public void terminaLeilao(LocalDate data) { 
+    	if (data.isAfter(this.dataFim) && this.estado=="publicado") {
+    		this.estado="encerrado";
+    		//falta feedback	
+    		this.licitacaoAtual.getComprador().adicionaReputacoesDisponiveis(this.vendedor);
+    		this.vendedor.adicionaReputacoesDisponiveis(this.licitacaoAtual.getComprador());
     	}
     }
+
+    public void arquivaLeilao() { 
+    	this.estado="arquivado";
+    }
+    
+    //public feedbackVendedor() {
+    	
+    //}
     
     public String recebeLicitacao(Licitacao licitacao) {
     	float montanteLicitacao = licitacao.getMontante();
@@ -82,6 +93,7 @@ public class Leilao {
     		if (montanteLicitacao > this.montanteInicial) {
     			if (dataLicitacao.isBefore(this.dataFim) || dataLicitacao.isEqual(this.dataFim)) { 
     				this.licitacaoAtual = licitacao;
+    				this.listaLicitacoes.add(licitacao);
     				return "Licitação aprovada";
     			} 
     			else {
@@ -96,6 +108,7 @@ public class Leilao {
     		if (montanteLicitacao > this.licitacaoAtual.getMontante()) {
     			if (dataLicitacao.isBefore(this.dataFim) || dataLicitacao.isEqual(this.dataFim)) { 
     				this.licitacaoAtual = licitacao;
+    				this.listaLicitacoes.add(licitacao);
     				return "Licitação aprovada";
     			} 
     			else {

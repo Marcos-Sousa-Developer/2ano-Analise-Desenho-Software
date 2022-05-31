@@ -12,6 +12,8 @@ public class User {
     private String password;
 
     private ArrayList<Leilao> meusLeiloes;
+    
+    private ArrayList<User> reputacoesDisponiveis;
 
     private float reputacao;
     
@@ -20,6 +22,7 @@ public class User {
         this.email=email;
         this.password=password;
         this.meusLeiloes=new ArrayList<Leilao>();
+        this.reputacoesDisponiveis=new ArrayList<User>();
         this.reputacao=5;
     }
 
@@ -29,10 +32,6 @@ public class User {
 
     public String getEmail() {
         return this.email;
-    }
-
-    public String getPassword() {
-        return this.password;
     }
     
     public  ArrayList<Leilao> getMeusLeiloes() {
@@ -62,4 +61,25 @@ public class User {
     		return "Licitação não aprovada - leilão não se encontra disponível";
     	}
     }
+    
+    public void formularioReputacao(User user, float avaliacao) {
+    	if (this.reputacoesDisponiveis.contains(user)) {
+        	user.alteraReputacao(avaliacao);
+        	this.reputacoesDisponiveis.remove(user);
+    	}
+    }
+    
+    public void alteraReputacao(float reputacaoNova) {
+    	this.reputacao=(this.reputacao + reputacaoNova)/2;
+    }
+    
+    public void adicionaReputacoesDisponiveis(User user) {
+    	this.reputacoesDisponiveis.add(user);
+    }
+    
+    
+    
+    
+    
+    
 }
