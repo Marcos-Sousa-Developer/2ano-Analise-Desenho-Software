@@ -35,6 +35,9 @@ public class SimpleClient {
 		LocalDate dAtual = LocalDate.parse("2020-01-08");
 		LocalDate dAtual2 = LocalDate.parse("2020-03-08");
 		LocalDate dFinal = LocalDate.parse("2021-01-08");
+		LocalDate dFinal2 = LocalDate.parse("2021-01-07");
+		LocalDate dFinal3 = LocalDate.parse("2027-01-07");
+
 		
 		Leilao Leilao1 = Vendedor.criaLeilao(Vendedor, "Leilona", Armario);
 		Vendedor.configLeilao(Leilao1, 500, dFinal);
@@ -57,10 +60,10 @@ public class SimpleClient {
 		System.out.println(Resultado2);
 		System.out.println(Leilao1.getLicitacaoAtual().getMontante());
 		
-		Vendedor2.terminaLeilao(Leilao1);
+		Leilao1.terminaLeilao(dFinal2);
 		System.out.println(Leilao1.getEstado());
 		
-		Vendedor.terminaLeilao(Leilao1);
+		Leilao1.terminaLeilao(dFinal3);
 		System.out.println(Leilao1.getEstado());
 
 	}
