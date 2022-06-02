@@ -1,4 +1,4 @@
-# Projetos de 2ºano, Análise e Desenho de Software
+# Projetos de 2ºano: Leilões Online
 Projeto de 2ºano, do curso de Tecnologias de Informação 
 
 Cadeira: Análise e Desenho de Software
