@@ -1,1 +1,0 @@
-Falta fazer extensão do diagrama de sequencia de um caso de uso
